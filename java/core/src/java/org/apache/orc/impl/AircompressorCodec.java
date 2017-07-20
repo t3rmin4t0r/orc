@@ -20,11 +20,14 @@ package org.apache.orc.impl;
 
 import io.airlift.compress.Compressor;
 import io.airlift.compress.Decompressor;
+
 import org.apache.orc.CompressionCodec;
+import org.apache.orc.CompressionCodec.Modifier;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.EnumSet;
+import java.util.zip.Deflater;
 
 public class AircompressorCodec implements CompressionCodec {
   private final Compressor compressor;
@@ -96,7 +99,6 @@ public class AircompressorCodec implements CompressionCodec {
 
   @Override
   public CompressionCodec modify(EnumSet<Modifier> modifiers) {
-    // snappy allows no modifications
     return this;
   }
 
